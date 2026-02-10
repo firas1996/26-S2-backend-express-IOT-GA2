@@ -1,0 +1,23 @@
+1- install Node.js
+2- install any IDE (vs code ....)
+3- create a folder (with any name)
+4- in the last folder create another folder named backend
+5- open the CMD in the backend folder
+6- create/initialize a project with the commande: npm init
+7- open your project in the IDE with the commande: code .
+8- create your main file (index.js)
+9- install express with: npm i express
+10- create your express server:
+	- const express = require("express");
+	- const app = express();
+	- const port = 1122;
+	- app.listen(port, () => {
+  	    console.log("The server is running on Port: " + port);
+	  });
+11- install nodemon to convert your server to a live server with
+	- npm i nodemon
+12- in the package.json file create the 2 scripts start and dev:
+	  "scripts": {
+    	     "start": "node index.js",
+    	     "dev": "nodemon index.js"
+  	  },
