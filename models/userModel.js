@@ -42,6 +42,10 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
+  password_changed_at: {
+    type: Date,
+    default: Date.now(),
+  },
 });
 
 const User = mongoose.model("User", userSchema);
