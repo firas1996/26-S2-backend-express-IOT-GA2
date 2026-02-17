@@ -16,7 +16,32 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     // uppercase: true,
   },
-  password: {},
+  password: {
+    type: String,
+    required: [true, "The password is required !!!!"],
+    minlength: 8,
+    // validate: [validator.isStrongPassword, "Your pass must have ...."],
+  },
+  confirm_password: {
+    type: String,
+    required: [true, "The password is required !!!!"],
+    minlength: 8,
+    validate: {
+      validator: function (cPass) {
+        return cPass === this.password;
+      },
+      message: "Pass and cPass does not match !!!",
+    },
+  },
+  role: {
+    type: String,
+    enum: ["admin", "user"],
+    default: "user",
+  },
+  created_at: {
+    type: Date,
+    default: Date.now(),
+  },
 });
 
 const User = mongoose.model("User", userSchema);
