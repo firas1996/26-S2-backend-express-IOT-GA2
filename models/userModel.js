@@ -48,6 +48,8 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+userSchema.pre("save", async function (params) {});
+
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;
