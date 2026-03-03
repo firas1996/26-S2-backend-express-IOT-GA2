@@ -52,16 +52,31 @@ exports.getUserById = async (req, res) => {
 
 exports.updateUserById = async (req, res) => {
   try {
-    const user = await User.findByIdAndUpdate(req.params.id, req.body);
+    const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
     if (!user) {
       res.status(404).json({
         message: "User does not exist !!!!",
       });
     }
     res.status(200).json({
-      message: "User Fetched !!",
+      message: "User Updated !!",
       data: { user },
     });
+  } catch (error) {
+    res.status(400).json({
+      message: "Fail !!!",
+      error: error,
+    });
+  }
+};
+
+exports.deleteUserById = async (req, res) => {
+  try {
+    await User.findByIdAndDelete(req.params.id);
+    res.status(204).json();
   } catch (error) {
     res.status(400).json({
       message: "Fail !!!",
