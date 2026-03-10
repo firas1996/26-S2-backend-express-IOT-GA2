@@ -19,6 +19,18 @@ exports.signUp = async (req, res) => {
 };
 exports.signIn = async (req, res) => {
   try {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      res.status(400).json({
+        message: "Email and password are required !!!",
+      });
+    }
+    const user = await User.findOne({ email });
+    if (!user) {
+      res.status(400).json({
+        message: "Email or password are invalid !!!",
+      });
+    }
   } catch (error) {
     res.status(400).json({
       message: "Fail !!!",
