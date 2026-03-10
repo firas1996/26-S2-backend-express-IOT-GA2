@@ -26,11 +26,14 @@ exports.signIn = async (req, res) => {
       });
     }
     const user = await User.findOne({ email });
-    if (!user) {
+    if (!user || !(await user.checkPass(password, user.password))) {
       res.status(400).json({
         message: "Email or password are invalid !!!",
       });
     }
+    res.status(200).json({
+      message: "Logged In !!!",
+    });
   } catch (error) {
     res.status(400).json({
       message: "Fail !!!",
