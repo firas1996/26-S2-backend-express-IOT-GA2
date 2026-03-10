@@ -17,3 +17,12 @@ exports.signUp = async (req, res) => {
     });
   }
 };
+exports.signIn = async (req, res) => {
+  try {
+  } catch (error) {
+    res.status(400).json({
+      message: "Fail !!!",
+      error: error,
+    });
+  }
+};
