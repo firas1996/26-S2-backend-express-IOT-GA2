@@ -25,4 +25,4 @@ const mqttSchema = new mongoose.Schema({
 
 const Mqtt = mongoose.model("Mqtt", mqttSchema);
 
-module.exports = User;
+module.exports = Mqtt;
