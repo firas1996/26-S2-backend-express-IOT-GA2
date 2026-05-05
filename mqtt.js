@@ -1,3 +1,4 @@
+const { default: axios } = require("axios");
 const mqtt = require("mqtt");
 
 const client = mqtt.connect("mqtt://broker.hivemq.com");
@@ -12,8 +13,15 @@ client.on("connect", () => {
       company_id: 1,
     };
     const payload = JSON.stringify(data);
-    console.log("Saved:", data);
-  }, 1500);
+    axios
+      .post("http://localhost:1122/api/mqtt", data)
+      .then(() => {
+        console.log("From mongo:", data);
+      })
+      .catch((e) => {
+        console.log("Mongo Error: ", e);
+      });
+  }, 5000);
 });
 
 client.on("error", (err) => {
